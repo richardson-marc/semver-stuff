@@ -31,12 +31,19 @@ $is_pull_request = $branch_is_default -ne "true"
 #$txt_version = (Get-Content core-leankit-api-semvers | Select-String -pattern '(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)').Matches[0].Groups
 # this works
 $lines = (Get-Content core-leankit-api-semvers )
-foreach  ($line in $lines) {
-    write-host $line
-}
+#foreach  ($line in $lines) {
+#    write-host $line
+#}
 #exit
+$foo = (Get-ChildItem -recurse -include core-leankit-api-semvers | Select-String -pattern '(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)')  #.Matches[0].Groups
 
-$txt_version = (Get-Content core-leankit-api-semvers | Select-String -pattern '(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)').Matches[0].Groups
+
+foreach ($f in $foo) {
+    write-host " dollarf is $f"
+}
+exit
+#$txt_version = (Get-Content core-leankit-api-semvers | Select-String -pattern '(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)').Matches[0].Groups
+$txt_version = (Get-Content core-leankit-api-semvers)# | Select-String -pattern '(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)').Matches[0].Groups
 $major_version = $txt_version['major'].Value
 $minor_version = $txt_version['minor'].Value
 $patch_version = $txt_version['patch'].Value
@@ -44,7 +51,7 @@ $patch_version = $txt_version['patch'].Value
 write-host "Second part"
 foreach ($version in $txt_version) {
    Write-Host "version.txt: $major_version.$minor_version.$patch_version"
-write-host $version
+write-host "version $version"
    }
 exit
 
