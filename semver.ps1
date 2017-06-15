@@ -31,11 +31,15 @@ $is_pull_request = $branch_is_default -ne "true"
 #$txt_version = (Get-Content core-leankit-api-semvers | Select-String -pattern '(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)').Matches[0].Groups
 # this works
 $lines = (Get-Content core-leankit-api-semvers )
-#foreach  ($line in $lines) {
-#    write-host $line
-#}
-#exit
-$foo = (Get-ChildItem -recurse -include core-leankit-api-semvers | Select-String -pattern '(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)')  #.Matches[0].Groups
+foreach  ($line in $lines) {
+    write-host $line
+}
+
+
+exit
+# don't need this I don't think
+#$foo = (Get-ChildItem -recurse -include core-leankit-api-semvers | Select-String -pattern '(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)') #.Matches[0].Groups
+#$foo = (Get-ChildItem -recurse -include core-leankit-api-semvers | Select-String -pattern '(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)')  |Select-Object Name#.Matches[0].Groups
 
 
 foreach ($f in $foo) {
